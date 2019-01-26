@@ -23,9 +23,9 @@ class PlayerObject{
    //-----------------------
   void calculateFitness(){
      if (pos.length < 10) {
-       fitness = round(lifetime * lifetime * pow(2, pos.length));  
+       fitness = floor(lifetime * lifetime * pow(2, pos.length - 1));  
      } else {
-       fitness = round(lifetime * lifetime * 1000 * (pos.length - 9));  
+       fitness = floor(lifetime * lifetime * 1000 * (pos.length - 9));  
      }
   }
   
@@ -94,7 +94,7 @@ class PlayerObject{
      newPos[newPos.length - 1] = newPos[newPos.length - 2];
      
      pos = newPos;
-     turnsForLive += 300;
+     turnsForLive += 100;
   }
   
   //----------------------

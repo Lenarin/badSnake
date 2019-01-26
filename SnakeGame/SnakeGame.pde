@@ -15,7 +15,6 @@ void draw() {
   if (!population.allDead()) {
     population.updateAll();
   } else {
-    println(population.bestSnake.player.fitness);
     population.naturalSelection();  
   }
 }

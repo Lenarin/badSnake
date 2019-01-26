@@ -6,7 +6,7 @@ class Population {
   int bestFitness = 0;
   int currentBestSize = 4;
   int currentBestSnake = 0;
-  float mutationRate = 0.05;
+  float mutationRate = 0.02;
   boolean showAll = false;
   
   TileSet bestSnake;
@@ -64,11 +64,11 @@ class Population {
       }
     }
     
-    if (max > currentBestSize) {
+    if (floor(max) > currentBestSize) {
       currentBestSize = floor(max);      
     }
     
-    if (!snakes[currentBestSnake].player.isAlive() || max > snakes[currentBestSnake].player.pos.length + 5) {
+    if (!snakes[currentBestSnake].player.isAlive() || max > (snakes[currentBestSnake].player.pos.length + 5)) {
       currentBestSnake = maxIndex;  
     }
     
@@ -128,6 +128,8 @@ class Population {
     
     setBestSnake();
     newSnakes[0] = bestSnake.clone();
+    
+    println(generation + ": " + newSnakes[0].player.fitness);
     
     for (int i = 1; i < newSnakes.length; i++) {
       TileSet mother = selectOne();

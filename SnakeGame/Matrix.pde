@@ -174,9 +174,12 @@ class Matrix{
   Matrix crossover(Matrix parthner){
     Matrix child = new Matrix(rows, cols);
     
+    int randomCols = floor(random(cols));
+    int randomRows = floor(random(rows));
+    
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
-        if (random(1) < 0.5) {
+        if ((i < randomRows) || (i == randomRows && j <= randomCols)) {
           child.matrix[i][j] = matrix[i][j];  
         } else {
           child.matrix[i][j] = parthner.matrix[i][j];  

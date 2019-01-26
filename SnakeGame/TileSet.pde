@@ -19,8 +19,7 @@ class TileSet {
     }
     restart();
     
-    brain = new Neural(24, 20, 4);
-    player.turnsForLive = 200;
+    brain = new Neural(24, 18, 4);
   }
   
   //-----------------------------------
@@ -31,8 +30,7 @@ class TileSet {
       }
     }
     restart();
-    brain = new Neural(24, 20, 4);
-    player.turnsForLive = 200;
+    brain = new Neural(24, 18, 4);
   }
   
   //-----------------------------------
@@ -108,7 +106,7 @@ class TileSet {
   void makeStep(){
     decision = brain.calculate(vision); 
     
-    float max = decision[1];
+    float max = decision[0];
     float maxIndex = 0;
     for (int i = 0; i < decision.length; i++) {
       if (decision[i] > max) {
@@ -191,7 +189,7 @@ class TileSet {
     lookPosition.add(direction);
     distance++;
     
-    while (!(lookPosition.x < 0 || lookPosition.y < 0 || lookPosition.x > (sizeX - 1) || lookPosition.y > (sizeY - 1))) {
+    while (!(lookPosition.x < 0 || lookPosition.y < 0 || lookPosition.x >= (sizeX) || lookPosition.y >= (sizeY))) {
       if (!foundFood && lookPosition.x == score.pos.x && lookPosition.y == score.pos.y) {
         foundFood = true;
         temp[0] = 1;
